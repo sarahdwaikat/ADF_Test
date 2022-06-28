@@ -24,7 +24,9 @@
 						"writeBatchTimeout": "00:30:00",
 						"writeBehavior": "insert"
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"parallelCopies": 3,
+					"enableSkipIncompatibleRow": true
 				},
 				"inputs": [
 					{
