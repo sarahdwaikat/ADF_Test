@@ -2,14 +2,14 @@
 	"name": "CosmosDbMongoDbCollection2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "CosmosDbMongoDb_MongoTest",
+			"referenceName": "CosmosDbMongoDb22222",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "CosmosDbMongoDbApiCollection",
 		"schema": [],
 		"typeProperties": {
-			"collection": "testCollection"
+			"collection": "test"
 		}
 	}
 }
