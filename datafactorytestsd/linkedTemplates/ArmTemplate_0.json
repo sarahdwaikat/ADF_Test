@@ -150,18 +150,18 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "CosmosDbMongoDb333333",
+					"referenceName": "CosmosDbMongoDb_MongoTest",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "collection1"
+					"collection": "test"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb333333')]"
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb_MongoTest')]"
 			]
 		},
 		{
