@@ -5,32 +5,11 @@
 		"factoryName": {
 			"value": "datafactorytestsd"
 		},
-		"CosmosDb1_connectionString": {
-			"value": ""
-		},
-		"CosmosDbMongoDb333333_connectionString": {
-			"value": ""
-		},
-		"CosmosDbMongoDb333333_account": {
-			"value": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDbApi1_connectionString": {
-			"value": ""
-		},
-		"CosmosDbMongoDbApi1_account": {
-			"value": ""
-		},
 		"CosmosDbMongoDb_MongoTest_connectionString": {
 			"value": ""
 		},
 		"CosmosDbMongoDb_MongoTest_account": {
 			"value": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDb333333_properties_typeProperties_database": {
-			"value": "NewDB"
-		},
-		"CosmosDbMongoDbApi1_properties_typeProperties_database": {
-			"value": "Database1"
 		},
 		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
 			"value": "SampleDB"

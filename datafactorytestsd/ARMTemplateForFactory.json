@@ -7,27 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactorytestsd"
 		},
-		"CosmosDb1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
-		},
-		"CosmosDbMongoDb333333_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb333333'"
-		},
-		"CosmosDbMongoDb333333_account": {
-			"type": "secureString",
-			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb333333'",
-			"defaultValue": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDbApi1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi1'"
-		},
-		"CosmosDbMongoDbApi1_account": {
-			"type": "secureString",
-			"metadata": "Secure string for 'account' of 'CosmosDbMongoDbApi1'"
-		},
 		"CosmosDbMongoDb_MongoTest_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb_MongoTest'"
@@ -36,14 +15,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb_MongoTest'",
 			"defaultValue": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDb333333_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "NewDB"
-		},
-		"CosmosDbMongoDbApi1_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "Database1"
 		},
 		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
 			"type": "string",
@@ -143,63 +114,12 @@
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "test"
+					"collection": "test222"
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb_MongoTest')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('CosmosDb1_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb333333')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDbMongoDbApi",
-				"typeProperties": {
-					"connectionString": "[parameters('CosmosDbMongoDb333333_connectionString')]",
-					"account": {
-						"type": "SecureString",
-						"value": "[parameters('CosmosDbMongoDb333333_account')]"
-					},
-					"database": "[parameters('CosmosDbMongoDb333333_properties_typeProperties_database')]",
-					"isServerVersionAbove32": true
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDbMongoDbApi",
-				"typeProperties": {
-					"connectionString": "[parameters('CosmosDbMongoDbApi1_connectionString')]",
-					"account": {
-						"type": "SecureString",
-						"value": "[parameters('CosmosDbMongoDbApi1_account')]"
-					},
-					"database": "[parameters('CosmosDbMongoDbApi1_properties_typeProperties_database')]",
-					"isServerVersionAbove32": true
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb_MongoTest')]",

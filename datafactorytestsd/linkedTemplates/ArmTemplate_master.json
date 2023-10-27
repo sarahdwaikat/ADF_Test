@@ -7,27 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactorytestsd"
 		},
-		"CosmosDb1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
-		},
-		"CosmosDbMongoDb333333_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb333333'"
-		},
-		"CosmosDbMongoDb333333_account": {
-			"type": "secureString",
-			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb333333'",
-			"defaultValue": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDbApi1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi1'"
-		},
-		"CosmosDbMongoDbApi1_account": {
-			"type": "secureString",
-			"metadata": "Secure string for 'account' of 'CosmosDbMongoDbApi1'"
-		},
 		"CosmosDbMongoDb_MongoTest_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb_MongoTest'"
@@ -36,14 +15,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb_MongoTest'",
 			"defaultValue": "mongodb-test-sarah"
-		},
-		"CosmosDbMongoDb333333_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "NewDB"
-		},
-		"CosmosDbMongoDbApi1_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "Database1"
 		},
 		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
 			"type": "string",
@@ -76,32 +47,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"CosmosDb1_connectionString": {
-						"value": "[parameters('CosmosDb1_connectionString')]"
-					},
-					"CosmosDbMongoDb333333_connectionString": {
-						"value": "[parameters('CosmosDbMongoDb333333_connectionString')]"
-					},
-					"CosmosDbMongoDb333333_account": {
-						"value": "[parameters('CosmosDbMongoDb333333_account')]"
-					},
-					"CosmosDbMongoDbApi1_connectionString": {
-						"value": "[parameters('CosmosDbMongoDbApi1_connectionString')]"
-					},
-					"CosmosDbMongoDbApi1_account": {
-						"value": "[parameters('CosmosDbMongoDbApi1_account')]"
-					},
 					"CosmosDbMongoDb_MongoTest_connectionString": {
 						"value": "[parameters('CosmosDbMongoDb_MongoTest_connectionString')]"
 					},
 					"CosmosDbMongoDb_MongoTest_account": {
 						"value": "[parameters('CosmosDbMongoDb_MongoTest_account')]"
-					},
-					"CosmosDbMongoDb333333_properties_typeProperties_database": {
-						"value": "[parameters('CosmosDbMongoDb333333_properties_typeProperties_database')]"
-					},
-					"CosmosDbMongoDbApi1_properties_typeProperties_database": {
-						"value": "[parameters('CosmosDbMongoDbApi1_properties_typeProperties_database')]"
 					},
 					"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
 						"value": "[parameters('CosmosDbMongoDb_MongoTest_properties_typeProperties_database')]"
