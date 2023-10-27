@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "CosmosDbMongoDbApi",
 		"typeProperties": {
-			"connectionString": "mongodb://mongodb-test-sarah:@mongodb-test-sarah.mongo.cosmos.azure.com:10255/?appname=@mongodb-test-sarah@;tls=true;replicaSet=globaldb;maxIdleTime=2m;retryWrites=false",
+			"connectionString": "mongodb://mongodb-test-sarah:@mongodb-test-sarah.mongo.cosmos.azure.com:10255/?appname=@mongodb-test-sarah@;ssl=true;replicaSet=globaldb;maxIdleTime=2m;retryWrites=false",
 			"account": "mongodb-test-sarah",
 			"database": "NewDB",
 			"isServerVersionAbove32": true,
