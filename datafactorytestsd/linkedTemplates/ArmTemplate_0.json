@@ -7,19 +7,85 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactorytestsd"
 		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
+		"CosmosDbMongoDb333333_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb333333'"
+		},
+		"CosmosDbMongoDb333333_account": {
+			"type": "secureString",
+			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb333333'",
+			"defaultValue": "mongodb-test-sarah"
+		},
 		"CosmosDbMongoDbApi1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi1'"
 		},
+		"CosmosDbMongoDbApi1_account": {
+			"type": "secureString",
+			"metadata": "Secure string for 'account' of 'CosmosDbMongoDbApi1'"
+		},
+		"CosmosDbMongoDb_MongoTest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb_MongoTest'"
+		},
+		"CosmosDbMongoDb_MongoTest_account": {
+			"type": "secureString",
+			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb_MongoTest'",
+			"defaultValue": "mongodb-test-sarah"
+		},
+		"CosmosDbMongoDb333333_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "NewDB"
+		},
 		"CosmosDbMongoDbApi1_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "Database1"
+		},
+		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SampleDB"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDb1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb333333')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDb333333_connectionString')]",
+					"account": {
+						"type": "SecureString",
+						"value": "[parameters('CosmosDbMongoDb333333_account')]"
+					},
+					"database": "[parameters('CosmosDbMongoDb333333_properties_typeProperties_database')]",
+					"isServerVersionAbove32": true
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -29,6 +95,10 @@
 				"type": "CosmosDbMongoDbApi",
 				"typeProperties": {
 					"connectionString": "[parameters('CosmosDbMongoDbApi1_connectionString')]",
+					"account": {
+						"type": "SecureString",
+						"value": "[parameters('CosmosDbMongoDbApi1_account')]"
+					},
 					"database": "[parameters('CosmosDbMongoDbApi1_properties_typeProperties_database')]",
 					"isServerVersionAbove32": true
 				}
@@ -36,43 +106,62 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollection1')]",
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb_MongoTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDb_MongoTest_connectionString')]",
+					"account": {
+						"type": "SecureString",
+						"value": "[parameters('CosmosDbMongoDb_MongoTest_account')]"
+					},
+					"database": "[parameters('CosmosDbMongoDb_MongoTest_properties_typeProperties_database')]",
+					"isServerVersionAbove32": true
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "CosmosDbMongoDbApi1",
+					"referenceName": "CosmosDbMongoDb_MongoTest",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "CollectionID1"
+					"collection": "SampleCollection"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDbApi1')]"
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb_MongoTest')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollection2')]",
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "CosmosDbMongoDbApi1",
+					"referenceName": "CosmosDbMongoDb333333",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "Testing"
+					"collection": "collection1"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDbApi1')]"
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb333333')]"
 			]
 		},
 		{
@@ -86,8 +175,8 @@
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
+							"timeout": "0.12:00:00",
+							"retry": 5,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
@@ -103,20 +192,18 @@
 								"writeBatchTimeout": "00:30:00",
 								"writeBehavior": "insert"
 							},
-							"enableStaging": false,
-							"parallelCopies": 3,
-							"enableSkipIncompatibleRow": true
+							"enableStaging": false
 						},
 						"inputs": [
 							{
-								"referenceName": "CosmosDbMongoDbApiCollection1",
+								"referenceName": "CosmosDbMongoDbCollection1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "CosmosDbMongoDbApiCollection2",
+								"referenceName": "CosmosDbMongoDbCollection2",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -124,14 +211,13 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbApiCollection1')]",
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbApiCollection2')]"
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection1')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection2')]"
 			]
 		}
 	]
