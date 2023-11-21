@@ -8,7 +8,7 @@
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
-					"retry": 5,
+					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
@@ -28,13 +28,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "CosmosDbMongoDbCollection1",
+						"referenceName": "CosmosDbMongoDbCollection_Source",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "CosmosDbMongoDbCollection2",
+						"referenceName": "CosmosDbMongoDbCollection1",
 						"type": "DatasetReference"
 					}
 				]
