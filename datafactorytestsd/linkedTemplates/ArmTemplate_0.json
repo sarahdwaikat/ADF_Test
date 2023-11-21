@@ -127,7 +127,7 @@
 							"sink": {
 								"type": "CosmosDbMongoDbApiSink",
 								"writeBatchTimeout": "00:30:00",
-								"writeBehavior": "insert"
+								"writeBehavior": "upsert"
 							},
 							"enableStaging": false
 						},
@@ -140,7 +140,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "CosmosDbMongoDbCollection1",
+								"referenceName": "CosmosDbMongoDbCollection_Source",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -153,8 +153,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]",
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection1')]"
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]"
 			]
 		}
 	]
