@@ -34,7 +34,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "CosmosDbMongoDbCollection1",
+						"referenceName": "CosmosDbMongoDbCollection_Source",
 						"type": "DatasetReference"
 					}
 				]
