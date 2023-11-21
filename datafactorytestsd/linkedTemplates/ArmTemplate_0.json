@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactorytestsd"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"CosmosDbMongoDb_MongoTest_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb_MongoTest'"
@@ -25,6 +29,19 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb_MongoTest')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -57,7 +74,7 @@
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "SampleCollection"
+					"collection": "Sync_Coll1"
 				}
 			},
 			"dependsOn": [
@@ -65,7 +82,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection2')]",
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection_Source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -77,7 +94,7 @@
 				"type": "CosmosDbMongoDbApiCollection",
 				"schema": [],
 				"typeProperties": {
-					"collection": "test222"
+					"collection": "SampleCollection"
 				}
 			},
 			"dependsOn": [
@@ -96,7 +113,7 @@
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
-							"retry": 5,
+							"retry": 0,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
@@ -116,14 +133,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "CosmosDbMongoDbCollection1",
+								"referenceName": "CosmosDbMongoDbCollection_Source",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "CosmosDbMongoDbCollection2",
+								"referenceName": "CosmosDbMongoDbCollection1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -136,8 +153,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection1')]",
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection2')]"
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection1')]"
 			]
 		}
 	]
