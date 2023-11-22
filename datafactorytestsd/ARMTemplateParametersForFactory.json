@@ -14,7 +14,16 @@
 		"CosmosDbMongoDb_MongoTest_account": {
 			"value": "mongodb-test-sarah"
 		},
+		"MongoDBSource_connectionString": {
+			"value": ""
+		},
+		"MongoDBSource_account": {
+			"value": "mongodb-test-sarah"
+		},
 		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
+			"value": "SampleDB"
+		},
+		"MongoDBSource_properties_typeProperties_database": {
 			"value": "SampleDB"
 		}
 	}

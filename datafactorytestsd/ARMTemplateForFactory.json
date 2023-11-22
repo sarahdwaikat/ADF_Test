@@ -20,7 +20,20 @@
 			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb_MongoTest'",
 			"defaultValue": "mongodb-test-sarah"
 		},
+		"MongoDBSource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'MongoDBSource'"
+		},
+		"MongoDBSource_account": {
+			"type": "secureString",
+			"metadata": "Secure string for 'account' of 'MongoDBSource'",
+			"defaultValue": "mongodb-test-sarah"
+		},
 		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SampleDB"
+		},
+		"MongoDBSource_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "SampleDB"
 		}
@@ -30,7 +43,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline4')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -51,68 +64,6 @@
 							"source": {
 								"type": "CosmosDbMongoDbApiSource",
 								"batchSize": 100
-							},
-							"sink": {
-								"type": "CosmosDbMongoDbApiSink",
-								"writeBatchTimeout": "00:30:00",
-								"writeBehavior": "upsert"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "CosmosDbMongoDbCollection_Source",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "CosmosDbMongoDbCollection_Source",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
 							},
 							"sink": {
 								"type": "CosmosDbMongoDbApiSink",
@@ -123,69 +74,6 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DelimitedText1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "CosmosDbMongoDbCollection2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
-				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "CosmosDbMongoDbApiSource",
-								"batchSize": 100
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"copyBehavior": "PreserveHierarchy"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
 								"referenceName": "CosmosDbMongoDbCollection_Source",
 								"type": "DatasetReference",
 								"parameters": {}
@@ -193,7 +81,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DelimitedText2",
+								"referenceName": "CosmosDbMongoDb_Sync",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -207,47 +95,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "CosmosDbMongoDb_MongoTest",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CosmosDbMongoDbApiCollection",
-				"schema": [],
-				"typeProperties": {
-					"collection": "Sync_Coll1"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb_MongoTest')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbCollection2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "CosmosDbMongoDb_MongoTest",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CosmosDbMongoDbApiCollection",
-				"schema": [],
-				"typeProperties": {
-					"collection": "storage_sync"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb_MongoTest')]"
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDb_Sync')]"
 			]
 		},
 		{
@@ -271,104 +119,23 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb_Sync')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
+					"referenceName": "MongoDBSource",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "moviesDB2.csv",
-						"container": "mycontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "movies",
-						"type": "String"
-					},
-					{
-						"name": "Title",
-						"type": "String"
-					},
-					{
-						"name": "genresgenregenre",
-						"type": "String"
-					},
-					{
-						"name": "YEAR",
-						"type": "String"
-					},
-					{
-						"name": "Rating",
-						"type": "String"
-					}
-				]
+					"collection": "Sync_MongoDB"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "mycontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "id",
-						"type": "String"
-					},
-					{
-						"name": "movies",
-						"type": "String"
-					},
-					{
-						"name": "Title",
-						"type": "String"
-					},
-					{
-						"name": "genresgenregenre",
-						"type": "String"
-					},
-					{
-						"name": "YEAR",
-						"type": "String"
-					},
-					{
-						"name": "Rating",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+				"[concat(variables('factoryId'), '/linkedServices/MongoDBSource')]"
 			]
 		},
 		{
@@ -398,6 +165,25 @@
 						"value": "[parameters('CosmosDbMongoDb_MongoTest_account')]"
 					},
 					"database": "[parameters('CosmosDbMongoDb_MongoTest_properties_typeProperties_database')]",
+					"isServerVersionAbove32": true
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MongoDBSource')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('MongoDBSource_connectionString')]",
+					"account": {
+						"type": "SecureString",
+						"value": "[parameters('MongoDBSource_account')]"
+					},
+					"database": "[parameters('MongoDBSource_properties_typeProperties_database')]",
 					"isServerVersionAbove32": true
 				}
 			},
