@@ -9,7 +9,7 @@
 		"type": "CosmosDbMongoDbApiCollection",
 		"schema": [],
 		"typeProperties": {
-			"collection": "Sync_MongoDB"
+			"collection": "SampleCollection"
 		}
 	}
 }
