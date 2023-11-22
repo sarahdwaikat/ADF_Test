@@ -8,10 +8,10 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"CosmosDbMongoDb_MongoTest_connectionString": {
+		"CosmosDbMongoDb1_SinkDB_connectionString": {
 			"value": ""
 		},
-		"CosmosDbMongoDb_MongoTest_account": {
+		"CosmosDbMongoDb1_SinkDB_account": {
 			"value": "mongodb-test-sarah"
 		},
 		"MongoDBSource_connectionString": {
@@ -20,7 +20,7 @@
 		"MongoDBSource_account": {
 			"value": "mongodb-test-sarah"
 		},
-		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
+		"CosmosDbMongoDb1_SinkDB_properties_typeProperties_database": {
 			"value": "SampleDB"
 		},
 		"MongoDBSource_properties_typeProperties_database": {

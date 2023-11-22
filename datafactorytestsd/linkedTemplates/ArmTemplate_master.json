@@ -11,13 +11,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
-		"CosmosDbMongoDb_MongoTest_connectionString": {
+		"CosmosDbMongoDb1_SinkDB_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb_MongoTest'"
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb1_SinkDB'"
 		},
-		"CosmosDbMongoDb_MongoTest_account": {
+		"CosmosDbMongoDb1_SinkDB_account": {
 			"type": "secureString",
-			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb_MongoTest'",
+			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb1_SinkDB'",
 			"defaultValue": "mongodb-test-sarah"
 		},
 		"MongoDBSource_connectionString": {
@@ -29,7 +29,7 @@
 			"metadata": "Secure string for 'account' of 'MongoDBSource'",
 			"defaultValue": "mongodb-test-sarah"
 		},
-		"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
+		"CosmosDbMongoDb1_SinkDB_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "SampleDB"
 		},
@@ -67,11 +67,11 @@
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
-					"CosmosDbMongoDb_MongoTest_connectionString": {
-						"value": "[parameters('CosmosDbMongoDb_MongoTest_connectionString')]"
+					"CosmosDbMongoDb1_SinkDB_connectionString": {
+						"value": "[parameters('CosmosDbMongoDb1_SinkDB_connectionString')]"
 					},
-					"CosmosDbMongoDb_MongoTest_account": {
-						"value": "[parameters('CosmosDbMongoDb_MongoTest_account')]"
+					"CosmosDbMongoDb1_SinkDB_account": {
+						"value": "[parameters('CosmosDbMongoDb1_SinkDB_account')]"
 					},
 					"MongoDBSource_connectionString": {
 						"value": "[parameters('MongoDBSource_connectionString')]"
@@ -79,8 +79,8 @@
 					"MongoDBSource_account": {
 						"value": "[parameters('MongoDBSource_account')]"
 					},
-					"CosmosDbMongoDb_MongoTest_properties_typeProperties_database": {
-						"value": "[parameters('CosmosDbMongoDb_MongoTest_properties_typeProperties_database')]"
+					"CosmosDbMongoDb1_SinkDB_properties_typeProperties_database": {
+						"value": "[parameters('CosmosDbMongoDb1_SinkDB_properties_typeProperties_database')]"
 					},
 					"MongoDBSource_properties_typeProperties_database": {
 						"value": "[parameters('MongoDBSource_properties_typeProperties_database')]"
