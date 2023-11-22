@@ -38,12 +38,6 @@
 						"referenceName": "CosmosDbMongoDbCollection_Source",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
-					}
 				]
 			}
 		],
