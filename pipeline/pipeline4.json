@@ -22,7 +22,7 @@
 					"sink": {
 						"type": "CosmosDbMongoDbApiSink",
 						"writeBatchTimeout": "00:30:00",
-						"writeBehavior": "insert"
+						"writeBehavior": "upsert"
 					},
 					"enableStaging": false
 				},

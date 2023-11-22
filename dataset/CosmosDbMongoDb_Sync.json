@@ -2,7 +2,7 @@
 	"name": "CosmosDbMongoDb_Sync",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "MongoDBSource",
+			"referenceName": "CosmosDbMongoDb1_SinkDB",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
