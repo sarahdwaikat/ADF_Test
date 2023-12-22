@@ -14,6 +14,9 @@
 		"CosmosDbMongoDb1_SinkDB_account": {
 			"value": "mongodb-test-sarah"
 		},
+		"CosmosDbNSource_connectionString": {
+			"value": ""
+		},
 		"MongoDBSource_connectionString": {
 			"value": ""
 		},

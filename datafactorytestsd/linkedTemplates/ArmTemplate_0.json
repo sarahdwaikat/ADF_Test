@@ -20,6 +20,10 @@
 			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb1_SinkDB'",
 			"defaultValue": "mongodb-test-sarah"
 		},
+		"CosmosDbNSource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbNSource'"
+		},
 		"MongoDBSource_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MongoDBSource'"
@@ -70,6 +74,19 @@
 					},
 					"database": "[parameters('CosmosDbMongoDb1_SinkDB_properties_typeProperties_database')]",
 					"isServerVersionAbove32": true
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbNSource')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbNSource_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -151,6 +168,91 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDb1_SinkDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbNoSqlContainer1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbNSource",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {
+					"type": "object",
+					"properties": {
+						"ProcessDataId": {
+							"type": "string"
+						},
+						"chartId": {
+							"type": "string"
+						},
+						"chartPresentation": {
+							"type": "string"
+						},
+						"info": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"mainTrend": {
+									"type": "string"
+								}
+							}
+						},
+						"data": {
+							"type": "object",
+							"properties": {
+								"segment": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								},
+								"segmentationId": {
+									"type": "string"
+								},
+								"confidenceValue": {
+									"type": "integer"
+								},
+								"foConfidenceValue": {
+									"type": "integer"
+								},
+								"scConfidenceValue": {
+									"type": "number"
+								},
+								"soConfidenceValue": {
+									"type": "integer"
+								},
+								"gross_outstanding": {
+									"type": "number"
+								},
+								"premium": {
+									"type": "number"
+								},
+								"class/": {
+									"type": "string"
+								},
+								"line/qa": {
+									"type": "string"
+								},
+								"riskcodes/qa": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"typeProperties": {
+					"collectionName": "Cont1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbNSource')]"
 			]
 		},
 		{
@@ -323,6 +425,62 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/storage_dataseT_2')]",
 				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline6')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbMongoDbApiSource",
+								"batchSize": 100
+							},
+							"sink": {
+								"type": "CosmosDbMongoDbApiSink",
+								"writeBatchTimeout": "00:30:00",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "CosmosDbMongoDbCollection_Source",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CosmosDbMongoDb_Sync",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbCollection_Source')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDb_Sync')]"
 			]
 		}
 	]

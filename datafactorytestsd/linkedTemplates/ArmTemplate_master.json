@@ -20,6 +20,10 @@
 			"metadata": "Secure string for 'account' of 'CosmosDbMongoDb1_SinkDB'",
 			"defaultValue": "mongodb-test-sarah"
 		},
+		"CosmosDbNSource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbNSource'"
+		},
 		"MongoDBSource_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MongoDBSource'"
@@ -72,6 +76,9 @@
 					},
 					"CosmosDbMongoDb1_SinkDB_account": {
 						"value": "[parameters('CosmosDbMongoDb1_SinkDB_account')]"
+					},
+					"CosmosDbNSource_connectionString": {
+						"value": "[parameters('CosmosDbNSource_connectionString')]"
 					},
 					"MongoDBSource_connectionString": {
 						"value": "[parameters('MongoDBSource_connectionString')]"
