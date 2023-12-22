@@ -1,0 +1,80 @@
+{
+	"name": "CosmosDbNoSqlContainer1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDbNSource",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"ProcessDataId": {
+					"type": "string"
+				},
+				"chartId": {
+					"type": "string"
+				},
+				"chartPresentation": {
+					"type": "string"
+				},
+				"info": {
+					"type": "object",
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"mainTrend": {
+							"type": "string"
+						}
+					}
+				},
+				"data": {
+					"type": "object",
+					"properties": {
+						"segment": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						},
+						"segmentationId": {
+							"type": "string"
+						},
+						"confidenceValue": {
+							"type": "integer"
+						},
+						"foConfidenceValue": {
+							"type": "integer"
+						},
+						"scConfidenceValue": {
+							"type": "number"
+						},
+						"soConfidenceValue": {
+							"type": "integer"
+						},
+						"gross_outstanding": {
+							"type": "number"
+						},
+						"premium": {
+							"type": "number"
+						},
+						"class/": {
+							"type": "string"
+						},
+						"line/qa": {
+							"type": "string"
+						},
+						"riskcodes/qa": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "Cont1"
+		}
+	}
+}
