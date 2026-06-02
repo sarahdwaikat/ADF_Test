@@ -1,0 +1,15 @@
+{
+	"name": "ADF-test-Sarah",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9ec9dc4c-37d9-47a6-b331-09b2c5bbf7fc",
+		"tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+	}
+}
